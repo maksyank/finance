@@ -7,19 +7,18 @@ CREATE TABLE account (
     phone_number VARCHAR(16) NOT NULL,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    avatar bytea,
     created_on TIMESTAMP NOT NULL,
     last_login TIMESTAMP
 );
 
 CREATE TABLE portfolio (
     id SERIAL PRIMARY KEY,
-    naming VARCHAR(20) NOT NULL,
+    title VARCHAR(20) NOT NULL,
     account_id INT,
     FOREIGN KEY (account_id) REFERENCES account(id)
 );
 
-CREATE TABLE asset (
+CREATE TABLE asset_currency (
     id SERIAL PRIMARY KEY,
     asset_type VARCHAR(20) NOT NULL,
     asset_value NUMERIC NOT NULL,
@@ -29,6 +28,8 @@ CREATE TABLE asset (
 
 CREATE TABLE goal (
     id SERIAL PRIMARY KEY,
+    title VARCHAR(15) NOT NULL,
+    state VARCHAR(15) NOT NULL,
     description VARCHAR(100),
     target_amount NUMERIC NOT NULL,
     deadline TIMESTAMP NOT NULL,
@@ -63,7 +64,7 @@ CREATE TABLE bill (
 
 CREATE TABLE user_transaction (
     id SERIAL PRIMARY KEY,
-    naming VARCHAR(15) NOT NULL,
+    title VARCHAR(15) NOT NULL,
     description VARCHAR(100),
     date_of_action TIMESTAMP NOT NULL,
     transaction_value NUMERIC NOT NULL,
